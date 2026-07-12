@@ -178,16 +178,6 @@
     line-height: 1.12;
     letter-spacing: -0.01em;
   }
-  .hero-tagline{
-    margin-top: 22px;
-    font-size: 1.14rem;
-    color: var(--ink-soft);
-    max-width: 60ch;
-  }
-  .hero-tagline .hl{
-    color: var(--teal);
-    font-weight: 500;
-  }
   @media (max-width: 760px){
     .hero{ padding-top: 56px; }
   }
@@ -195,42 +185,23 @@
   /* ---------- About ---------- */
   .about-grid{
     display: grid;
-    grid-template-columns: 190px 1fr 220px;
+    grid-template-columns: 220px 1fr;
     gap: 40px;
     align-items: start;
   }
   .about-photo img{
     width: 100%;
-    aspect-ratio: 3 / 4;
-    object-fit: cover;
+    height: auto;
+    display: block;
     border-radius: var(--radius);
     border: 1px solid var(--line);
   }
   .about-bio p{ margin: 0; color: var(--ink); }
-  .edu-card{
-    background: var(--surface);
-    border: 1px solid var(--line);
-    border-radius: var(--radius);
-    padding: 18px 20px;
-    height: fit-content;
-  }
-  .edu-card h3{
-    font-size: 0.78rem;
-    font-family: 'IBM Plex Mono', monospace;
-    text-transform: uppercase;
-    letter-spacing: 0.06em;
-    color: var(--ink-faint);
-    margin-bottom: 12px;
-    font-weight: 500;
-  }
-  .edu-item{ margin-bottom: 14px; }
-  .edu-item:last-child{ margin-bottom: 0; }
-  .edu-item .deg{ font-weight: 500; font-size: 0.94rem; }
-  .edu-item .yr{ display: block; color: var(--ink-faint); font-size: 0.82rem; font-family: 'IBM Plex Mono', monospace; margin-top: 2px; }
+  .about-bio .hl{ color: var(--teal); font-weight: 500; }
 
   @media (max-width: 760px){
     .about-grid{ grid-template-columns: 1fr; }
-    .about-photo{ width: 160px; margin: 0 auto; }
+    .about-photo{ width: 200px; margin: 0 auto; }
   }
 
   /* ---------- Publications ---------- */
@@ -265,8 +236,6 @@
     border-radius: var(--radius);
     text-transform: uppercase;
   }
-  .tag.published{ background: var(--teal-soft); color: var(--teal); }
-  .tag.working{ background: var(--amber-soft); color: var(--amber); }
   .tag.link{
     background: var(--surface);
     border: 1px solid var(--line);
@@ -304,57 +273,25 @@
     .teach-code{ width: auto; }
   }
 
-  /* ---------- CV ---------- */
-  .cv-box{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 24px;
-    background: var(--surface);
-    border: 1px solid var(--line);
-    border-radius: var(--radius);
-    padding: 26px 28px;
-    flex-wrap: wrap;
-  }
-  .cv-box p{ margin: 4px 0 0; color: var(--ink-soft); font-size: 0.94rem; }
-  .btn{
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 0.85rem;
-    letter-spacing: 0.02em;
-    background: var(--ink);
-    color: #fff;
-    padding: 12px 22px;
-    border-radius: var(--radius);
-    display: inline-block;
-    white-space: nowrap;
-  }
-  .btn:hover{ background: var(--teal); text-decoration: none; }
-
-  /* ---------- Contact ---------- */
-  .contact-list{
+  /* ---------- About links ---------- */
+  .about-links{
     display: flex;
     flex-direction: column;
-    gap: 4px;
+    gap: 8px;
+    margin-top: 14px;
   }
-  .contact-row{
-    display: flex;
-    align-items: center;
-    gap: 14px;
-    padding: 14px 0;
-    border-top: 1px solid var(--line);
-  }
-  .contact-row:last-child{ border-bottom: 1px solid var(--line); }
-  .contact-label{
+  .about-links a{
     font-family: 'IBM Plex Mono', monospace;
-    font-size: 0.78rem;
-    color: var(--ink-faint);
-    width: 90px;
-    flex-shrink: 0;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
+    font-size: 0.82rem;
+    letter-spacing: 0.02em;
+    text-align: center;
+    padding: 10px 14px;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: var(--surface);
+    color: var(--ink);
   }
-  .contact-row a{ color: var(--ink); font-weight: 500; }
-  .contact-row a:hover{ color: var(--teal); }
+  .about-links a:hover{ border-color: var(--teal); color: var(--teal); text-decoration: none; }
 
   footer{
     padding: 40px 28px 60px;
@@ -378,8 +315,6 @@
       <li><a href="#about">About</a></li>
       <li><a href="#publications">Publications</a></li>
       <li><a href="#teaching">Teaching</a></li>
-      <li><a href="#cv">CV</a></li>
-      <li><a href="#contact">Contact</a></li>
     </ul>
   </div>
 </header>
@@ -390,7 +325,6 @@
   <section class="hero" id="top">
     <div class="hero-role">PhD Candidate · Department of Statistics · UC Berkeley</div>
     <h1>Arisa Sadeghpour</h1>
-    <p class="hero-tagline">I work on <span class="hl">causal inference</span> methods for settings with complex data — designing estimators that stay valid when the data is messy, structured, or entangled, with an eye toward applications in the social sciences.</p>
   </section>
 
   <!-- ABOUT -->
@@ -398,61 +332,50 @@
     <div class="eyebrow">About</div>
     <div class="about-grid">
       <div class="about-photo">
-        <img src="headshot.jpg" alt="Portrait of Arisa Sadeghpour" width="600" height="800">
+        <img src="headshot.jpg" alt="Portrait of Arisa Sadeghpour" width="466" height="700">
+        <div class="about-links">
+          <a href="Sadeghpour_CV.pdf" target="_blank" rel="noopener">CV ↓</a>
+          <a href="mailto:arisa_sadeghpour@berkeley.edu">Email</a>
+          <a href="https://www.linkedin.com/in/arisa-sadeghpour" target="_blank" rel="noopener">LinkedIn ↗</a>
+        </div>
       </div>
       <div class="about-bio">
-        <p>I'm a PhD candidate in Statistics at UC Berkeley, where I develop causal inference methods for data that doesn't fit the textbook case — settings with network structure, spatial dependence, or shifting estimands. My recent work looks at how residualization and outcome modeling can produce shorter, still-valid confidence intervals under design-based inference, alongside applied projects spanning voting behavior, evictions, and disease modeling, and a summer at Stanford's RegLab evaluating deployed AI systems with causal tools. Before Berkeley, I studied Computational and Applied Mathematics at Rice University, where a civic leadership certificate pulled me toward using statistics for questions that affect real communities — a thread that's stayed central to my research since.</p>
-      </div>
-      <div class="edu-card">
-        <h3>Education</h3>
-        <div class="edu-item">
-          <div class="deg">PhD, Statistics<br>UC Berkeley</div>
-          <span class="yr">Expected 2027 · Chancellor's Fellow</span>
-        </div>
-        <div class="edu-item">
-          <div class="deg">BA, Computational &amp; Applied Mathematics<br>Rice University</div>
-          <span class="yr">2021</span>
-        </div>
+        <p>I'm a PhD candidate in <span class="hl">Statistics at UC Berkeley</span> (expected 2027, Chancellor's Fellow), where I develop causal inference methods for data that doesn't fit the textbook case — settings with network structure, spatial dependence, or shifting estimands. My recent work looks at how residualization and outcome modeling can produce shorter, still-valid confidence intervals under design-based inference, alongside applied projects spanning voting behavior, evictions, and disease modeling, and a summer at Stanford's RegLab evaluating deployed AI systems with causal tools. Before Berkeley, I earned a BA in Computational and Applied Mathematics from Rice University (2021), where a civic leadership certificate pulled me toward using statistics for questions that affect real communities — a thread that's stayed central to my research since.</p>
       </div>
     </div>
   </section>
 
   <!-- PUBLICATIONS -->
   <section id="publications">
-    <div class="eyebrow">Publications &amp; Presentations</div>
+    <div class="eyebrow">Publications</div>
     <div class="pub-list">
 
       <div class="pub">
+        <div class="pub-title">Isolating the Effects of Multiple Focal Treatments within Textual Treatments</div>
+        <div class="pub-meta">Sadeghpour, A.</div>
+      </div>
+
+      <div class="pub">
         <div class="pub-title">Inference with weights: Residualization produces short, valid intervals for varying estimands and varying resampling processes</div>
-        <div class="pub-meta">Hartman, E., Hazlett, C., &amp; Sadeghpour, A. · Atlantic Causal Inference Conference, 2025 (Poster)</div>
+        <div class="pub-meta">Hartman, E., Hazlett, C., &amp; Sadeghpour, A. · Atlantic Causal Inference Conference, 2025</div>
         <div class="pub-tags">
-          <span class="tag working">Working paper</span>
           <a class="tag link" href="https://www.arxiv.org/abs/2507.19607" target="_blank" rel="noopener">Preprint ↗</a>
         </div>
       </div>
 
       <div class="pub">
         <div class="pub-title">Outcome Modeling in Design-Based Inference for Spatial Settings</div>
-        <div class="pub-meta">Sadeghpour, A. &amp; Hartman, E. · PolMeth Summer Meeting, 2024 (Poster); Atlantic Causal Inference Conference, 2024 (Poster)</div>
-        <div class="pub-tags">
-          <span class="tag working">Working paper</span>
-        </div>
+        <div class="pub-meta">Sadeghpour, A. &amp; Hartman, E. · PolMeth Summer Meeting, 2024; Atlantic Causal Inference Conference, 2024</div>
       </div>
 
       <div class="pub">
         <div class="pub-title">Vote Centers and the Voter Experience</div>
         <div class="pub-meta">Chen, C., Sadeghpour, A., &amp; Lamb, M. (2021) · American Politics Research, 49(6), 591–603</div>
-        <div class="pub-tags">
-          <span class="tag published">Published</span>
-        </div>
       </div>
 
       <div class="pub">
         <div class="pub-title">Understanding the Effect of Evictions on Voting through Data Science</div>
-        <div class="pub-meta">Sadeghpour, A. · Texas Women in Math Symposium, 2021 (Oral Presentation)</div>
-        <div class="pub-tags">
-          <span class="tag working">Presentation</span>
-        </div>
+        <div class="pub-meta">Sadeghpour, A. · Texas Women in Math Symposium, 2021</div>
       </div>
 
     </div>
@@ -475,36 +398,6 @@
     </div>
   </section>
 
-  <!-- CV -->
-  <section id="cv">
-    <div class="eyebrow">Curriculum Vitae</div>
-    <div class="cv-box">
-      <div>
-        <div style="font-weight:500;">Full CV</div>
-        <p>Education, publications, teaching, awards, and skills in one document.</p>
-      </div>
-      <a class="btn" href="Sadeghpour_CV.pdf" target="_blank" rel="noopener">Download PDF ↓</a>
-    </div>
-  </section>
-
-  <!-- CONTACT -->
-  <section id="contact">
-    <div class="eyebrow">Contact</div>
-    <div class="contact-list">
-      <div class="contact-row">
-        <span class="contact-label">Email</span>
-        <a href="mailto:arisa_sadeghpour@berkeley.edu">arisa_sadeghpour@berkeley.edu</a>
-      </div>
-      <div class="contact-row">
-        <span class="contact-label">LinkedIn</span>
-        <a href="https://www.linkedin.com/in/arisa-sadeghpour" target="_blank" rel="noopener">linkedin.com/in/arisa-sadeghpour</a>
-      </div>
-      <div class="contact-row">
-        <span class="contact-label">Office</span>
-        <span>391 Evans Hall, Berkeley, CA 94720</span>
-      </div>
-    </div>
-  </section>
 
 </main>
 
