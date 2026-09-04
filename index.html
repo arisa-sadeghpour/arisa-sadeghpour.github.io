@@ -242,6 +242,25 @@
     color: var(--ink-soft);
   }
   .tag.link:hover{ border-color: var(--teal); color: var(--teal); text-decoration: none; }
+  .tag.toggle{
+    background: var(--surface);
+    border: 1px solid var(--line);
+    color: var(--ink-soft);
+    font: inherit;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    cursor: pointer;
+  }
+  .tag.toggle:hover{ border-color: var(--teal); color: var(--teal); }
+  .tag.toggle[aria-expanded="true"]{ border-color: var(--teal); color: var(--teal); }
+  .pub-abstract{
+    margin: 12px 0 0;
+    color: var(--ink-soft);
+    font-size: 0.92rem;
+    line-height: 1.55;
+  }
 
   /* ---------- Teaching ---------- */
   .teach-list{ display: flex; flex-direction: column; }
@@ -365,6 +384,11 @@
       <div class="pub">
         <div class="pub-title">Isolating the Effects of Multiple Focal Treatments within Textual Treatments</div>
         <div class="pub-meta">Arisa Sadeghpour</div>
+        <div class="pub-meta">Available upon request.</div>
+        <div class="pub-tags">
+          <button class="tag toggle" type="button" aria-expanded="false" onclick="toggleAbstract(this)">Abstract</button>
+        </div>
+        <p class="pub-abstract" hidden>Researchers are increasingly interested in understanding the causal effect of texts on human behavior, e.g. the effect of social media posts on persuasion. Recent work introduces a framework for estimating the isolated causal effect of focal language, adjusting for other, non-focal attributes of the text (Lin et al., 2025). While this framework considers settings with only one focal attribute, there are often several focal treatments of interest within texts. As with factorial studies, interaction effects of these focal treatments are often of interest. I leverage recent advances in observational factorial studies (Yu &amp; Ding, 2025) to identify and estimate the isolated causal effects of multiple focal treatments and their interactions. To address practical overlap challenges with high-dimensional non-focal attributes, I extend an omitted variable bias framework (Wainstein &amp; Hazlett, 2026) to accommodate multiple focal treatments. I demonstrate the proposed approach with a re-analysis of the public response to President Trump&rsquo;s tweets.</p>
       </div>
 
       <div class="pub">
@@ -372,7 +396,9 @@
         <div class="pub-meta">Erin Hartman, Chad Hazlett, &amp; Arisa Sadeghpour</div>
         <div class="pub-tags">
           <a class="tag link" href="https://www.arxiv.org/abs/2507.19607" target="_blank" rel="noopener">Preprint ↗</a>
+          <button class="tag toggle" type="button" aria-expanded="false" onclick="toggleAbstract(this)">Abstract</button>
         </div>
+        <p class="pub-abstract" hidden>Weighting procedures are used in observational causal inference to adjust for covariate imbalance within the sample. Common practice for inference is to estimate robust standard errors from a weighted regression of outcome on treatment. However, it is well known that weighting can inflate variance estimates, sometimes significantly, leading to standard errors and confidence intervals that are overly conservative. We instead examine and recommend the use of robust standard errors from a weighted regression that additionally includes the balancing covariates and their interactions with treatment. We show that these standard errors are more precise and asymptotically correct for weights that achieve exact balance under multiple common resampling frameworks, including design-based and model-based inference, as well as superpopulation sampling with a finite sample correction. Gains to precision can be quite significant when the balancing weights adjust for prognostic covariates. For procedures that balance only approximately or in expectation, such as inverse propensity weighting or approximate balancing weights, our proposed method improves precision by reducing residuals through augmentation with the parametric model. We demonstrate our approach through simulation and re-analysis of multiple empirical studies.</p>
       </div>
 
       <div class="pub">
@@ -380,12 +406,19 @@
         <div class="pub-meta">Arisa Sadeghpour &amp; Erin Hartman</div>
         <div class="pub-tags">
           <a class="tag link" href="https://arxiv.org/abs/2608.15439" target="_blank" rel="noopener">Preprint ↗</a>
+          <button class="tag toggle" type="button" aria-expanded="false" onclick="toggleAbstract(this)">Abstract</button>
         </div>
+        <p class="pub-abstract" hidden>In the face of spatial interference, researchers are often interested in estimating treatment effects at specific points located in space. Wang et al. (2025) and Pollmann (2023) provide design-based frameworks for estimating spillover effects on points located across a range of distances from interventions. Although these frameworks are design-based, we show their proposed estimands rely on outcomes that are directly unobservable and therefore, require outcome modeling. When using modeled outcomes in practice, even the typically design-unbiased Horvitz-Thompson estimator can accrue bias as a result of the modeling error. The performance of spatial outcome models depends on the density or resolution of observed outcomes. Through simulation, we find that the bias of the estimators decays with increasing outcome density, but not with increasing numbers of intervention units, and standard errors using modeled outcomes converge to the oracle standard errors. To demonstrate the role of outcome modeling with spatial interference, we reanalyze an experiment from Collazos et al. (2021) on the effect of hot spots policing on crime and provide several suggestions for practice.</p>
       </div>
 
       <div class="pub">
         <div class="pub-title">Vote Centers and the Voter Experience</div>
         <div class="pub-meta">Cynthia Chen, Arisa Sadeghpour, &amp; Matt Lamb (2021) · American Politics Research, 49(6), 591–603</div>
+        <div class="pub-tags">
+          <a class="tag link" href="https://journals.sagepub.com/doi/abs/10.1177/1532673X211029581" target="_blank" rel="noopener">Article ↗</a>
+          <button class="tag toggle" type="button" aria-expanded="false" onclick="toggleAbstract(this)">Abstract</button>
+        </div>
+        <p class="pub-abstract" hidden>The scholarship regarding vote centers primarily focuses on their impact on voter turnout. Though previous literature suggests modest and conditional increases in voter participation, the mechanism by which vote centers increase participation is less understood. One suggested mechanism is that they provide voters a better experience at the polling place. In this article, we investigate whether voters who cast their ballot at vote centers have a better experience than those who vote at traditional precinct polling places. Utilizing a unique dataset collected from exit polls of Election Day voters before and after the implementation of vote centers in Harris County, Texas, we examine if vote centers improved the voters&rsquo; experience. Contrary to theoretical expectations, we find that those who voted at a vote center reported having a more negative experience. This negative experience is driven primarily by longer lines and less helpful poll workers.</p>
       </div>
 
     </div>
@@ -417,6 +450,14 @@
 
 <script>
   document.getElementById('year').textContent = new Date().getFullYear();
+
+  function toggleAbstract(btn) {
+    const abs = btn.closest('.pub').querySelector('.pub-abstract');
+    const expanded = abs.hidden;
+    abs.hidden = !expanded;
+    btn.setAttribute('aria-expanded', expanded);
+    btn.textContent = expanded ? 'Hide Abstract' : 'Abstract';
+  }
 
   const navToggle = document.getElementById('navToggle');
   const navLinks = document.getElementById('navLinks');
